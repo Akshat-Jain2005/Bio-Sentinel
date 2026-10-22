@@ -27,7 +27,25 @@ export default function PaymentSuccessModal({ open, onClose, amount, email, loca
   const place = location || 'Sangam Vihar'
   const liters = litersFor(amount)
 
-  const download = () => {
+  const download = async () => {
+    try {
+      const pid = paymentId || `pay_${Date.now().toString(36)}`
+      const res = await fetch(`/donations/certificate/${pid}`)
+      if (res.ok) {
+        const blob = await res.blob()
+        const url = URL.createObjectURL(blob)
+        const a = Object.assign(document.createElement('a'), {
+          href: url,
+          download: `impact-certificate-${pid}.pdf`,
+        })
+        a.click()
+        setTimeout(() => URL.revokeObjectURL(url), 1000)
+        return
+      }
+    } catch (err) {
+      console.warn('Backend certificate fetch error, using fallback:', err)
+    }
+
     const blob = buildCertificatePdf([
       'Certificate of Impact',
       'Bio-Sentinel Emergency Clean Water Relief Fund',

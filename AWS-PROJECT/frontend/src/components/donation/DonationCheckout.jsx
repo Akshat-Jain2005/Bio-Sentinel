@@ -45,8 +45,8 @@ export default function DonationCheckout({ location, onBack }) {
   const [errorToast, setErrorToast] = useState(null)
 
   // Sanitize & inspect the API key from Vite environment or backend fallback
-  const rawKey = import.meta.env.VITE_RAZORPAY_KEY_ID || 'rzp_test_Tmd7C2dIIk9OPZ'
-  const razorpayKey = rawKey ? String(rawKey).trim().replace(/['"]/g, '') : 'rzp_test_Tmd7C2dIIk9OPZ'
+  const rawKey = import.meta.env.VITE_RAZORPAY_KEY_ID || 'rzp_test_TogZR57B2dNBiJ'
+  const razorpayKey = rawKey ? String(rawKey).trim().replace(/['"]/g, '') : 'rzp_test_TogZR57B2dNBiJ'
 
   useEffect(() => {
     if (touched) setErrors(validateDetails({ amount, donor }))

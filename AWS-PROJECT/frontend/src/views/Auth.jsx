@@ -13,9 +13,16 @@ const ROLES = [
 
 export default function Auth({ initialRole = 'operator', initialMode = 'signin', onBack }) {
   const {
-    clientId, devEnabled, loginWithPassword, register, staffLogin, devSignIn,
+    user, clientId, devEnabled, loginWithPassword, register, staffLogin, devSignIn,
     busy, notice, onCredential, configLoading, configError, loadConfig,
   } = useAuth()
+
+  // Redirect to main page as soon as user is authenticated
+  useEffect(() => {
+    if (user && user.role && user.role !== 'public') {
+      if (onBack) onBack()
+    }
+  }, [user, onBack])
 
   // Active role/tab: 'operator' | 'reporter' | 'citizen'
   const [role, setRole] = useState(ROLES.some((r) => r.id === initialRole) ? initialRole : 'operator')
@@ -151,6 +158,7 @@ export default function Auth({ initialRole = 'operator', initialMode = 'signin',
 
     try {
       await staffLogin(role, email.trim(), password, code.trim())
+      if (onBack) onBack()
     } catch (err) {
       if (err.message?.includes('Failed to fetch') || err.message?.includes('NetworkError') || err.message?.includes('Bad Gateway')) {
         setFormError('Backend server is offline (localhost:8000). Please ensure server is running.')

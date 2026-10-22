@@ -102,14 +102,24 @@ function Portal() {
   }
 
   // If user just authenticated while on auth view:
-  // - operator/reporter goes directly into operator console ('operator-dashboard')
-  // - citizen goes to landing page ('home') where their name appears and they can access the dashboard
+  // - if user had a target view requested (e.g. dashboard), take them there
+  // - operator/reporter goes into operator console ('operator-dashboard')
+  // - citizen goes to main landing page ('home')
   const effectiveView = (member && view === 'auth')
-    ? (isOperator ? 'operator-dashboard' : 'home')
+    ? (targetView || (isOperator ? 'operator-dashboard' : 'home'))
     : view
 
   if (effectiveView === 'auth') {
-    return <Auth initialRole={authRole} initialMode={authMode} onBack={() => setView('home')} />
+    return (
+      <Auth
+        initialRole={authRole}
+        initialMode={authMode}
+        onBack={() => {
+          setView(targetView || 'home')
+          setTargetView(null)
+        }}
+      />
+    )
   }
 
   // 1. Operator Console Dashboard (The restored comprehensive LiveDashboard)

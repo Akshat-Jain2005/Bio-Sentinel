@@ -51,6 +51,7 @@ DDB_ENDPOINT_URL = os.getenv("DDB_ENDPOINT_URL", "").strip() or None
 # so local runs and tests work without extra configuration. SESSION_TTL_S bounds
 # how long a minted token stays valid; PASSWORD_MIN_LENGTH is enforced on signup.
 SESSION_SECRET = os.getenv("SESSION_SECRET", "dev-session-secret-not-for-production" if DEV_MODE else "").strip()
+CERT_SECRET = os.getenv("CERT_SECRET", SESSION_SECRET or "dev-cert-secret-bio-sentinel").strip()
 SESSION_TTL_S = int(os.getenv("SESSION_TTL_S", str(7 * 86400)))
 PASSWORD_MIN_LENGTH = int(os.getenv("PASSWORD_MIN_LENGTH", "8"))
 
