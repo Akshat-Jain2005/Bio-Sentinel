@@ -108,8 +108,10 @@ export function AuthProvider({ children }) {
     }
   }, [signIn])
 
+  const clientId = (import.meta.env.VITE_GOOGLE_CLIENT_ID || '').trim() || config?.google_client_id || ''
+
   return <AuthCtx.Provider value={{
-    clientId: config?.google_client_id || '', devEnabled: config?.dev_login_enabled === true,
+    clientId, devEnabled: config?.dev_login_enabled === true,
     passwordEnabled: config?.password_login_enabled === true,
     registrationEnabled: config?.registration_enabled === true,
     staffEnabled: config?.staff_login_enabled === true,
@@ -151,6 +153,10 @@ export function GoogleButton() {
   const [attempt, setAttempt] = useState(0)
   useEffect(() => {
     let cancelled = false
+    if (!clientId) {
+      setLoaded(false)
+      return
+    }
     loadGoogle().then((gsi) => {
       if (cancelled || !host.current) return
       gsi.initialize({ client_id: clientId, callback: onCredential, auto_select: false })
@@ -164,7 +170,8 @@ export function GoogleButton() {
     return () => { cancelled = true }
   }, [clientId, onCredential, attempt])
   return <div className="google-signin" aria-busy={busy}>
-    {!loaded && !error && <p role="status" className="muted">Loading Google sign-in…</p>}
+    {!clientId && <p role="status" className="muted">Google sign-in client ID not configured.</p>}
+    {clientId && !loaded && !error && <p role="status" className="muted">Loading Google sign-in…</p>}
     <div ref={host} className="gsi-host" inert={busy} />
     {error && <div className="signin-error"><p role="alert">{error}</p>
       <button type="button" className="btn-secondary" onClick={() => { setError(null); setLoaded(false); setAttempt((n) => n + 1) }}>Retry Google sign-in</button>

@@ -106,10 +106,23 @@ def current_user(authorization: str = Header(default="")):
                 identity = "google:" + subject
                 domain = email.rsplit("@", 1)[-1]
                 authoritative = domain == "gmail.com" or info.get("hd") == domain
-                if info.get("email_verified") is True and authoritative and _email_allowed(email, info.get("hd")):
-                    return {"role": "operator", "name": name, "id": identity, "email": email}
-                # Authenticated with Google but not an authorized operator.
-                return {"role": "authenticated", "name": name, "id": identity, "email": email}
+                is_op = bool(info.get("email_verified") is True and authoritative and _email_allowed(email, info.get("hd")))
+                
+                # Auto-create or update user record in backend store
+                from . import accounts
+                try:
+                    user_rec = accounts.upsert_google_user(email, name, subject, operator_eligible=is_op)
+                    if user_rec and user_rec.get("role") in ("operator", "reporter"):
+                        role = user_rec["role"]
+                    elif is_op:
+                        role = "operator"
+                    else:
+                        role = "authenticated"
+                except Exception as e:
+                    log.warning("Failed to persist google user: %s", e)
+                    role = "operator" if is_op else "authenticated"
+
+                return {"role": role, "name": name, "id": identity, "email": email}
     return _public()
 
 

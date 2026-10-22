@@ -150,6 +150,52 @@ def create_user(email: str, name: str, password: str, *, phone: str = "", alt_ph
     return item
 
 
+def upsert_google_user(email: str, name: str, subject: str = "", *, operator_eligible: bool = False) -> dict:
+    """Create or update an account record for a user authenticated via Google."""
+    email = _norm(email)
+    existing = get_user(email)
+    now = int(time.time())
+    if existing:
+        existing["last_login"] = now
+        if name and (not existing.get("name") or existing.get("name") == email):
+            existing["name"] = name
+        if subject and not existing.get("google_sub"):
+            existing["google_sub"] = subject
+        if operator_eligible:
+            existing["operator_eligible"] = True
+            existing["role"] = "operator"
+        elif not existing.get("role"):
+            existing["role"] = "citizen"
+        try:
+            _table().put_item(Item=existing)
+        except Exception as e:
+            log.warning("DynamoDB update google user failed: %s", e)
+        _local_users[email] = existing
+        _save_local_users()
+        return existing
+
+    item = {
+        "pk": _pk(email),
+        "sk": "META",
+        "email": email,
+        "name": (name or "").strip() or email,
+        "created_at": now,
+        "last_login": now,
+        "email_verified": True,
+        "auth_provider": "google",
+        "google_sub": subject,
+        "role": "operator" if operator_eligible else "citizen",
+        "operator_eligible": bool(operator_eligible),
+    }
+    try:
+        _table().put_item(Item=item)
+    except Exception as e:
+        log.warning("DynamoDB put_item failed for google user, persisting to local store: %s", e)
+    _local_users[email] = item
+    _save_local_users()
+    return item
+
+
 def set_password(email: str, name: str, password: str, *, operator_eligible: bool = False) -> dict:
     """Bind a password to ``email`` (create or overwrite the record). Marks the
     email verified; set ``operator_eligible`` when the caller's ownership of an

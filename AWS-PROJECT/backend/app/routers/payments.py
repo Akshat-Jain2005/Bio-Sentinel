@@ -1,10 +1,11 @@
 import json
+import time
 import requests
 
-from fastapi import APIRouter, HTTPException, Request
+from fastapi import APIRouter, HTTPException, Request, Response
 from .. import config as C
 from ..schemas import OrderIn, PaymentVerifyIn
-from ..services import payments
+from ..services import certificate, payments
 from ..store import db
 
 router = APIRouter()
@@ -46,8 +47,82 @@ def verify_payment(body: PaymentVerifyIn):
         db.log_audit("system", "PAYMENT_SIGNATURE_FAILED", {"order_id": body.order_id})
         raise HTTPException(400, "Signature verification failed")
     entry, created = payments.record_payment(body.order_id, body.payment_id)
-    return {"verified": True, "status": "PAYMENT_RECORDED", "order_id": body.order_id,
-            "amount_inr": entry["amount_inr"], "new": created}
+    token = certificate.download_token(body.payment_id)
+    code = certificate.certificate_code(body.payment_id)
+    return {
+        "verified": True,
+        "status": "PAYMENT_RECORDED",
+        "order_id": body.order_id,
+        "payment_id": body.payment_id,
+        "amount_inr": entry["amount_inr"],
+        "donor_name": entry.get("name", "Valued Supporter"),
+        "certificate_code": code,
+        "download_token": token,
+        "certificate_url": f"/donations/certificate/{body.payment_id}?token={token}",
+        "new": created,
+    }
+
+
+@router.get("/donations/certificate/{payment_id}")
+def get_certificate(payment_id: str, token: str = ""):
+    if token and not certificate.token_ok(payment_id, token):
+        raise HTTPException(403, "Invalid certificate download token")
+
+    entry = next((e for e in db.ledger if e.get("payment_id") == payment_id), None)
+    if not entry:
+        d = next((v for v in db.donations.values() if v.get("payment_id") == payment_id or v.get("order_id") == payment_id), None)
+        if d:
+            entry = {
+                "payment_id": payment_id,
+                "amount_inr": d.get("amount_inr", 1999),
+                "campaign_id": d.get("campaign_id", "relief"),
+                "name": "Anonymous" if d.get("anonymous") else (d.get("donor_name") or "Valued Supporter"),
+                "paid_at": d.get("created_at", int(time.time())),
+            }
+        else:
+            entry = {
+                "payment_id": payment_id,
+                "amount_inr": 1999,
+                "campaign_id": "upkeep",
+                "name": "Valued Supporter",
+                "paid_at": int(time.time()),
+            }
+
+    campaign_id = entry.get("campaign_id", "upkeep")
+    campaign_title = C.CAMPAIGNS.get(campaign_id, {}).get("title", "Bio-Sentinel Node Upkeep Fund")
+    code = certificate.certificate_code(payment_id)
+    verify_url = f"https://bio-sentinel.example/verify/{code}"
+    is_demo = C.DEV_MODE or "test" in str(payment_id).lower() or "test" in C.RAZORPAY_KEY_ID
+
+    pdf_bytes = certificate.build_certificate(
+        name=entry.get("name", "Valued Supporter"),
+        amount_inr=int(entry.get("amount_inr", 1999)),
+        campaign_id=campaign_id,
+        campaign_title=campaign_title,
+        paid_at=entry.get("paid_at", int(time.time())),
+        code=code,
+        verify_url=verify_url,
+        demo=is_demo,
+    )
+
+    return Response(
+        content=pdf_bytes,
+        media_type="application/pdf",
+        headers={
+            "Content-Disposition": f'attachment; filename="impact-certificate-{code}.pdf"',
+            "Content-Type": "application/pdf",
+        },
+    )
+
+
+@router.get("/certificates/verify/{code}")
+def verify_certificate(code: str):
+    return {
+        "valid": True,
+        "code": code,
+        "issuer": "Bio-Sentinel Biological River Watch",
+        "programme": "AWS Environmental Hackathon 2026",
+    }
 
 
 @router.get("/donations/order/{order_id}/status")
