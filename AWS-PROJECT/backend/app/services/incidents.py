@@ -46,13 +46,16 @@ def forecast_for(station_id, result=None):
     if result and result.get("arrival_forecast"):
         return result["arrival_forecast"]
     dist = STATION_METADATA.get(station_id, {}).get("distance_km", 0.0)
-    v = 2.2
+    # Delegate to the same velocity model used by the sensor path (15 mm/s = calm Yamuna baseline)
+    from bio_sentinel_inference import estimate_river_velocity
+    v, _ = estimate_river_velocity(15.0)
     return {
         "river_velocity_kmh": v,
         "distance_km": dist,
         "estimated_hours_to_wazirabad": round(dist / v, 1) if dist else 0.0,
         "predicted_intake_ammonia_ppm": None,
     }
+
 
 
 def open_incident_for(station_id):

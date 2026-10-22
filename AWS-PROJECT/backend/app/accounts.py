@@ -161,10 +161,10 @@ def upsert_google_user(email: str, name: str, subject: str = "", *, operator_eli
             existing["name"] = name
         if subject and not existing.get("google_sub"):
             existing["google_sub"] = subject
+        existing["operator_eligible"] = bool(operator_eligible)
         if operator_eligible:
-            existing["operator_eligible"] = True
             existing["role"] = "operator"
-        elif not existing.get("role"):
+        elif existing.get("role") == "operator":
             existing["role"] = "citizen"
         try:
             _table().put_item(Item=existing)
