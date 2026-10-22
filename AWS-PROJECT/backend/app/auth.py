@@ -111,17 +111,11 @@ def current_user(authorization: str = Header(default="")):
                 # Auto-create or update user record in backend store
                 from . import accounts
                 try:
-                    user_rec = accounts.upsert_google_user(email, name, subject, operator_eligible=is_op)
-                    if user_rec and user_rec.get("role") in ("operator", "reporter"):
-                        role = user_rec["role"]
-                    elif is_op:
-                        role = "operator"
-                    else:
-                        role = "authenticated"
+                    accounts.upsert_google_user(email, name, subject, operator_eligible=is_op)
                 except Exception as e:
                     log.warning("Failed to persist google user: %s", e)
-                    role = "operator" if is_op else "authenticated"
 
+                role = "operator" if is_op else "authenticated"
                 return {"role": role, "name": name, "id": identity, "email": email}
     return _public()
 

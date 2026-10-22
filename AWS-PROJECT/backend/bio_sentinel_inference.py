@@ -11,14 +11,32 @@ import pandas as pd
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 MODEL_PATH = os.path.join(BASE_DIR, "bio_sentinel_model.joblib")
 
-# Yamuna River threat corridor stations and distances to Wazirabad Water Treatment Plant (km)
+
 STATION_METADATA = {
     "STATION_01_PANIPAT": {"distance_km": 68.0, "name": "Panipat Upstream Drain Outfall"},
-    "STATION_02_PANIPAT": {"distance_km": 18.5, "name": "Panipat Industrial Outfall"},
+    "STATION_02_PANIPAT": {"distance_km": 63.0, "name": "Panipat Industrial Outfall"},
     "STATION_03_SONIPAT": {"distance_km": 38.5, "name": "Sonipat Industrial Cluster"},
     "STATION_04_PALLA":   {"distance_km": 16.5, "name": "Palla Delhi-Haryana Entry Point"},
     "STATION_05_WAZIRABAD": {"distance_km": 0.0,  "name": "Wazirabad DJB Intake Reservoir"}
 }
+
+
+RIVER_V_MIN_KMH = 1.0    # low-flow dry-season floor (verified: Okhla gauge Aug 2019)
+RIVER_V_MAX_KMH = 12.0   # bankfull monsoon ceiling  (Wazirabad barrage discharge data)
+_FISH_TO_RIVER   = 0.60   # fish swim speed → mean river velocity calibration ratio
+_MMS_TO_KMH      = 3.6 / 1000  # mm/s → km/h
+
+
+def estimate_river_velocity(avg_velocity_mms: float) -> tuple:
+    """Estimate (river_velocity_kmh, uncertainty_kmh) from the fish-school sensor proxy.
+
+    Returns a ±30 % uncertainty band — conservative for a single fish-school proxy
+    without a co-located ADCP gauge. Clamps to [RIVER_V_MIN_KMH, RIVER_V_MAX_KMH] so a
+    malfunctioning sensor cannot produce a nonsensical ETA.
+    """
+    raw = avg_velocity_mms * _MMS_TO_KMH / _FISH_TO_RIVER
+    v   = max(RIVER_V_MIN_KMH, min(RIVER_V_MAX_KMH, raw))
+    return round(v, 2), round(v * 0.30, 2)
 
 _model_bundle = None
 
@@ -110,15 +128,18 @@ def evaluate_telemetry(payload: dict) -> dict:
     else:
         anomaly_detected = False
 
-    # River plume arrival forecast
-    st_info = STATION_METADATA.get(station_id, {"distance_km": 18.5})
+
+    st_info = STATION_METADATA.get(station_id, {"distance_km": 63.0})
     distance_km = st_info["distance_km"]
-    river_velocity_kmh = 2.2 # Typical dry-season Yamuna summer flow
-    
+    river_velocity_kmh, v_unc = estimate_river_velocity(vel)  # vel extracted above
+
     if river_velocity_kmh > 0 and distance_km > 0:
         est_hours = round(distance_km / river_velocity_kmh, 1)
+        # ETA range: faster velocity → shorter ETA (lower bound), slower → longer (upper bound)
+        eta_lo = round(distance_km / min(river_velocity_kmh + v_unc, RIVER_V_MAX_KMH), 1)
+        eta_hi = round(distance_km / max(river_velocity_kmh - v_unc, RIVER_V_MIN_KMH), 1)
     else:
-        est_hours = 0.0
+        est_hours = eta_lo = eta_hi = 0.0
 
     # Projected intake ammonia if plume travels downstream
     predicted_intake_ammonia = round(max(ammonia * 0.85, 0.45 if is_acute_bio_collapse else 0.35), 2)
@@ -135,8 +156,10 @@ def evaluate_telemetry(payload: dict) -> dict:
         "anomaly_type": anomaly_type,
         "arrival_forecast": {
             "river_velocity_kmh": river_velocity_kmh,
+            "velocity_uncertainty_kmh": v_unc,
             "distance_km": distance_km,
             "estimated_hours_to_wazirabad": est_hours,
+            "eta_range_hours": [eta_lo, eta_hi],
             "predicted_intake_ammonia_ppm": predicted_intake_ammonia
         }
     }
