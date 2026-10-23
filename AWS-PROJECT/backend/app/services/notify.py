@@ -4,6 +4,7 @@ messages are appended to db.outbox only – no external calls are made."""
 import logging
 import requests
 import boto3
+from botocore.config import Config
 from botocore.exceptions import ClientError
 from .. import config as C
 from ..store import db
@@ -17,7 +18,8 @@ _sns_client = None
 def _get_sns():
     global _sns_client
     if _sns_client is None:
-        _sns_client = boto3.client("sns", region_name=C.AWS_REGION)
+        cfg = Config(connect_timeout=3, read_timeout=3, retries={"max_attempts": 1})
+        _sns_client = boto3.client("sns", region_name=C.AWS_REGION, config=cfg)
     return _sns_client
 
 
@@ -46,7 +48,7 @@ def send_sms(phone, text):
                 },
             )
             log.info("SNS SMS delivered to %s", phone)
-        except ClientError as exc:
+        except Exception as exc:
             log.error("SNS SMS to %s failed: %s", phone, exc)
             return False
     return True
@@ -71,7 +73,7 @@ def publish_to_topic(topic_arn, subject, message):
                 Message=message,
             )
             log.info("SNS topic publish OK: %s", topic_arn)
-        except ClientError as exc:
+        except Exception as exc:
             log.error("SNS topic publish to %s failed: %s", topic_arn, exc)
             return False
     return True

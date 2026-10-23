@@ -59,6 +59,14 @@ export default function StationWatch({ stations = [], status, selectedStationId 
             <span>{coords ? `${coords[0].toFixed(4)}, ${coords[1].toFixed(4)}` : 'NOT REPORTED'}</span>
             {coords && <button type="button" className="lcd-map-btn" onClick={openMap} aria-label={`Open map of ${station?.name || 'this station'}`}><OpenMapIcon /></button>}
           </dd></div>
+          {station?.community_reports_count > 0 && (
+            <div className="lcd-reports" style={{ gridColumn: 'span 2', borderTop: '1px solid rgba(255,255,255,0.15)', paddingTop: '4px', marginTop: '4px' }}>
+              <dt style={{ color: '#38bdf8' }}>FIELD REPORTS</dt>
+              <dd style={{ color: '#38bdf8' }}>
+                {station.community_reports_count} report(s) in 24h {station.latest_report?.observations?.length ? `(${station.latest_report.observations.join(', ')})` : ''}
+              </dd>
+            </div>
+          )}
         </dl>
         <p className="lcd-foot">{latest ? `Last sample ${fmtClock(latest.timestamp)}` : 'No sample received'} · Live feed</p>
       </div>

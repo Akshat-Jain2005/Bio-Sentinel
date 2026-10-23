@@ -31,6 +31,8 @@ REPORTER = {"Authorization": "Bearer dev-reporter"}
 
 @pytest.fixture(autouse=True)
 def fresh_store(monkeypatch, tmp_path):
+    from app import store
+    monkeypatch.setattr(store, "_STORE_FILE", None)
     db.reset()
     from app import accounts
     monkeypatch.setattr(accounts, "_USERS_FILE", str(tmp_path / ".test_users.json"))

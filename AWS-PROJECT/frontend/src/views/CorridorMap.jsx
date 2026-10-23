@@ -183,6 +183,7 @@ export default function CorridorMap({
         <div class="marker-label">
           <span class="marker-name">${info.short}</span>
           ${isIntake ? `<span class="marker-gate gate-${intakeStatus.toLowerCase()}">${intakeStatus}</span>` : ''}
+          ${st.community_reports_count > 0 ? `<span class="marker-reports-badge" title="${st.community_reports_count} field report(s)">📝 ${st.community_reports_count}</span>` : ''}
         </div>
       `
 
@@ -290,6 +291,19 @@ export default function CorridorMap({
                   {selectedStation.coords ? `${selectedStation.coords[0].toFixed(4)}, ${selectedStation.coords[1].toFixed(4)}` : '—'}
                 </span>
               </div>
+              {selectedStation.community_reports_count > 0 && (
+                <div style={{ gridColumn: 'span 2', background: 'rgba(56, 189, 248, 0.1)', border: '1px solid rgba(56, 189, 248, 0.25)', borderRadius: '6px', padding: '6px 8px', marginTop: '4px' }}>
+                  <span className="fact-k" style={{ color: '#38bdf8' }}>COMMUNITY FIELD REPORTS</span>
+                  <span className="fact-v" style={{ display: 'block', color: '#f0f9ff' }}>
+                    📝 {selectedStation.community_reports_count} report(s) in last 24h
+                    {selectedStation.latest_report?.observations?.length > 0 && (
+                      <span style={{ display: 'block', fontSize: '0.78rem', color: '#94a3b8', marginTop: '2px' }}>
+                        Observations: {selectedStation.latest_report.observations.join(', ')}
+                      </span>
+                    )}
+                  </span>
+                </div>
+              )}
             </div>
             {onSelectStation && (
               <button
