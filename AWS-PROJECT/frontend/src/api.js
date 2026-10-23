@@ -43,7 +43,7 @@ export async function api(path, { method = 'GET', body, auth = true, signal } = 
     const text = await res.text()
     let data = null
     try { data = text ? JSON.parse(text) : null } catch {
-      throw new ApiError(res.status, 'The service returned an unreadable response. Try again.')
+      throw new ApiError(res.status, text && text.length < 200 ? text : 'The service returned an unreadable response. Try again.')
     }
     if (!res.ok) {
       const detail = Array.isArray(data?.detail)

@@ -65,6 +65,7 @@ def ingest_telemetry(payload: TelemetryPayload, x_api_key: str = Header(default=
         })
         db.stations[sid] = {"status": result["threat_level"], "last_telemetry": data,
                             "last_result": result, "toxicity": tox, "updated_at": now}
+        db.save()
     inc = incidents.on_telemetry(sid, result, tox)
     return {**result, "incident_id": inc["id"] if inc and inc["status"] != "CLOSED" else None}
 
@@ -80,22 +81,63 @@ def telemetry_history(station_id: str, limit: int = 50):
 @router.get("/status")
 def public_status():
     """Public dashboard data. No controls, no audit trail."""
+    now = time.time()
+    # Tally recent non-rejected community reports in the last 24h per station
+    recent_reports_by_station = {}
+    for r in db.reports.values():
+        if r.get("status") == "rejected":
+            continue
+        if now - r.get("created_at", 0) > 86400:
+            continue
+        sid = r.get("station_id")
+        if not sid and "lat" in r and "lng" in r:
+            near_sid, dist = incidents.nearest_station(r["lat"], r["lng"])
+            if dist <= C.STATION_ATTACH_RADIUS_KM:
+                sid = near_sid
+        if sid:
+            recent_reports_by_station.setdefault(sid, []).append(r)
+
     stations = []
     for sid, meta in STATION_METADATA.items():
         s = db.stations.get(sid, {})
         tox = s.get("toxicity") or {}
-        stations.append({"station_id": sid, "name": meta["name"], "distance_km": meta["distance_km"], "status": s.get("status", "NORMAL"),
-                         "unionized_ammonia_mgl": tox.get("unionized_ammonia_mgl"),
-                         "toxicity_band": tox.get("band", "SAFE"),
-                         "coords": C.STATION_COORDS.get(sid),
-                         "updated_at": s.get("updated_at")})
+        st_reports = recent_reports_by_station.get(sid, [])
+        latest_rep = None
+        if st_reports:
+            st_reports.sort(key=lambda x: -x["created_at"])
+            latest = st_reports[0]
+            latest_rep = {
+                "id": latest["id"],
+                "created_at": latest["created_at"],
+                "observations": latest.get("observations", []),
+                "ammonia_ppm": latest.get("ammonia_ppm"),
+                "ph": latest.get("ph"),
+                "severity": latest.get("severity", "green"),
+                "status": latest.get("status", "pending"),
+            }
+
+        stations.append({
+            "station_id": sid, "name": meta["name"], "distance_km": meta["distance_km"], "status": s.get("status", "NORMAL"),
+            "unionized_ammonia_mgl": tox.get("unionized_ammonia_mgl"),
+            "toxicity_band": tox.get("band", "SAFE"),
+            "coords": C.STATION_COORDS.get(sid),
+            "updated_at": s.get("updated_at"),
+            "community_reports_count": len(st_reports),
+            "latest_report": latest_rep,
+        })
     open_incs = [incidents.incident_view(i) for i in db.incidents.values() if i["status"] != "CLOSED"]
     top = max(open_incs, key=lambda i: incidents.LEVEL_RANK[i["level"]], default=None)
     summary = None
     if top:
         summary = {k: top[k] for k in ("station_id", "level", "anomaly_type", "confidence", "t_minus_seconds")}
-    return {"overall": incidents.overall_status(), "stations": stations, "incident": summary,
-            "intake_status": db.gate["intake_status"], **incidents.deficit_view()}
+    return {
+        "overall": incidents.overall_status(),
+        "stations": stations,
+        "incident": summary,
+        "intake_status": db.gate["intake_status"],
+        "total_community_reports": sum(len(v) for v in recent_reports_by_station.values()),
+        **incidents.deficit_view()
+    }
 
 
 @router.get("/stations")

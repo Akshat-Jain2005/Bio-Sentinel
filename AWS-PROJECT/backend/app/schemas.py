@@ -35,11 +35,13 @@ class ReportIn(BaseModel):
     observations: List[str] = []
     note: str = Field(default="", max_length=500)
     photo_key: Optional[str] = None
+    station_id: Optional[str] = None
 
 
 class ReportReview(BaseModel):
     action: Literal["approve", "reject"]
     note: str = Field(default="", max_length=200)
+    fallback_report: Optional[dict] = None
 
 
 class PhotoUploadIn(BaseModel):

@@ -1,0 +1,1125 @@
+{
+  "history": {
+    "STATION_01_PANIPAT": [
+      {
+        "timestamp": 1792740237,
+        "received_at": 1792740237,
+        "ammonia_ppm": 0.38,
+        "ph": 7.4,
+        "temperature_c": 28.5,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 15.0,
+        "avg_depth_cm": 78.0,
+        "erratic_index": 9.0,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 93
+      },
+      {
+        "timestamp": 1792740297,
+        "received_at": 1792740297,
+        "ammonia_ppm": 0.39,
+        "ph": 7.4,
+        "temperature_c": 28.5,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 15.5,
+        "avg_depth_cm": 77.0,
+        "erratic_index": 9.0,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 93
+      },
+      {
+        "timestamp": 1792740357,
+        "received_at": 1792740357,
+        "ammonia_ppm": 0.4,
+        "ph": 7.4,
+        "temperature_c": 28.5,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 15.0,
+        "avg_depth_cm": 76.0,
+        "erratic_index": 9.0,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 94
+      },
+      {
+        "timestamp": 1792740417,
+        "received_at": 1792740417,
+        "ammonia_ppm": 0.41,
+        "ph": 7.4,
+        "temperature_c": 28.5,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 15.5,
+        "avg_depth_cm": 78.0,
+        "erratic_index": 9.0,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 94
+      },
+      {
+        "timestamp": 1792740477,
+        "received_at": 1792740477,
+        "ammonia_ppm": 0.42,
+        "ph": 7.4,
+        "temperature_c": 28.5,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 15.0,
+        "avg_depth_cm": 77.0,
+        "erratic_index": 9.0,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 94
+      },
+      {
+        "timestamp": 1792740537,
+        "received_at": 1792740537,
+        "ammonia_ppm": 0.43,
+        "ph": 7.4,
+        "temperature_c": 28.5,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 15.5,
+        "avg_depth_cm": 76.0,
+        "erratic_index": 9.0,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 95
+      },
+      {
+        "timestamp": 1792740597,
+        "received_at": 1792740597,
+        "ammonia_ppm": 0.44,
+        "ph": 7.4,
+        "temperature_c": 28.5,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 15.0,
+        "avg_depth_cm": 78.0,
+        "erratic_index": 9.0,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 95
+      },
+      {
+        "timestamp": 1792740657,
+        "received_at": 1792740657,
+        "ammonia_ppm": 0.45,
+        "ph": 7.4,
+        "temperature_c": 28.5,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 15.5,
+        "avg_depth_cm": 77.0,
+        "erratic_index": 9.0,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 95
+      },
+      {
+        "timestamp": 1792740717,
+        "received_at": 1792740717,
+        "ammonia_ppm": 0.46,
+        "ph": 7.4,
+        "temperature_c": 28.5,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 15.0,
+        "avg_depth_cm": 76.0,
+        "erratic_index": 9.0,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 96
+      },
+      {
+        "timestamp": 1792740777,
+        "received_at": 1792740777,
+        "ammonia_ppm": 0.47,
+        "ph": 7.4,
+        "temperature_c": 28.5,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 15.5,
+        "avg_depth_cm": 78.0,
+        "erratic_index": 9.0,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 96
+      }
+    ],
+    "STATION_02_PANIPAT": [
+      {
+        "timestamp": 1792740237,
+        "received_at": 1792740237,
+        "ammonia_ppm": 0.38,
+        "ph": 7.4,
+        "temperature_c": 28.5,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 15.0,
+        "avg_depth_cm": 78.0,
+        "erratic_index": 9.0,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 93
+      },
+      {
+        "timestamp": 1792740297,
+        "received_at": 1792740297,
+        "ammonia_ppm": 0.39,
+        "ph": 7.4,
+        "temperature_c": 28.5,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 15.5,
+        "avg_depth_cm": 77.0,
+        "erratic_index": 9.0,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 93
+      },
+      {
+        "timestamp": 1792740357,
+        "received_at": 1792740357,
+        "ammonia_ppm": 0.4,
+        "ph": 7.4,
+        "temperature_c": 28.5,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 15.0,
+        "avg_depth_cm": 76.0,
+        "erratic_index": 9.0,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 94
+      },
+      {
+        "timestamp": 1792740417,
+        "received_at": 1792740417,
+        "ammonia_ppm": 0.41,
+        "ph": 7.4,
+        "temperature_c": 28.5,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 15.5,
+        "avg_depth_cm": 78.0,
+        "erratic_index": 9.0,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 94
+      },
+      {
+        "timestamp": 1792740477,
+        "received_at": 1792740477,
+        "ammonia_ppm": 0.42,
+        "ph": 7.4,
+        "temperature_c": 28.5,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 15.0,
+        "avg_depth_cm": 77.0,
+        "erratic_index": 9.0,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 94
+      },
+      {
+        "timestamp": 1792740537,
+        "received_at": 1792740537,
+        "ammonia_ppm": 0.43,
+        "ph": 7.4,
+        "temperature_c": 28.5,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 15.5,
+        "avg_depth_cm": 76.0,
+        "erratic_index": 9.0,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 95
+      },
+      {
+        "timestamp": 1792740597,
+        "received_at": 1792740597,
+        "ammonia_ppm": 0.44,
+        "ph": 7.4,
+        "temperature_c": 28.5,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 15.0,
+        "avg_depth_cm": 78.0,
+        "erratic_index": 9.0,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 95
+      },
+      {
+        "timestamp": 1792740657,
+        "received_at": 1792740657,
+        "ammonia_ppm": 0.45,
+        "ph": 7.4,
+        "temperature_c": 28.5,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 15.5,
+        "avg_depth_cm": 77.0,
+        "erratic_index": 9.0,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 95
+      },
+      {
+        "timestamp": 1792740717,
+        "received_at": 1792740717,
+        "ammonia_ppm": 0.46,
+        "ph": 7.4,
+        "temperature_c": 28.5,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 15.0,
+        "avg_depth_cm": 76.0,
+        "erratic_index": 9.0,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 96
+      },
+      {
+        "timestamp": 1792740777,
+        "received_at": 1792740777,
+        "ammonia_ppm": 0.47,
+        "ph": 7.4,
+        "temperature_c": 28.5,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 15.5,
+        "avg_depth_cm": 78.0,
+        "erratic_index": 9.0,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 96
+      },
+      {
+        "timestamp": 1792741105,
+        "received_at": 1792741105,
+        "ammonia_ppm": 1.0,
+        "ph": 2.0,
+        "temperature_c": 28.0,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 24.5,
+        "avg_depth_cm": 42.0,
+        "erratic_index": 38.0,
+        "threat_level": "WARNING_LEVEL_2",
+        "cellular": "4G-LTE",
+        "battery_percent": 95,
+        "verified_by_report_id": "rep_7f0f4000"
+      }
+    ],
+    "STATION_03_SONIPAT": [
+      {
+        "timestamp": 1792740237,
+        "received_at": 1792740237,
+        "ammonia_ppm": 0.28,
+        "ph": 7.2,
+        "temperature_c": 28.0,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 16.2,
+        "avg_depth_cm": 80.0,
+        "erratic_index": 7.5,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 93
+      },
+      {
+        "timestamp": 1792740297,
+        "received_at": 1792740297,
+        "ammonia_ppm": 0.28,
+        "ph": 7.2,
+        "temperature_c": 28.0,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 16.2,
+        "avg_depth_cm": 80.0,
+        "erratic_index": 7.5,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 93
+      },
+      {
+        "timestamp": 1792740357,
+        "received_at": 1792740357,
+        "ammonia_ppm": 0.28,
+        "ph": 7.2,
+        "temperature_c": 28.0,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 16.2,
+        "avg_depth_cm": 80.0,
+        "erratic_index": 7.5,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 94
+      },
+      {
+        "timestamp": 1792740417,
+        "received_at": 1792740417,
+        "ammonia_ppm": 0.28,
+        "ph": 7.2,
+        "temperature_c": 28.0,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 16.2,
+        "avg_depth_cm": 80.0,
+        "erratic_index": 7.5,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 94
+      },
+      {
+        "timestamp": 1792740477,
+        "received_at": 1792740477,
+        "ammonia_ppm": 0.28,
+        "ph": 7.2,
+        "temperature_c": 28.0,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 16.2,
+        "avg_depth_cm": 80.0,
+        "erratic_index": 7.5,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 94
+      },
+      {
+        "timestamp": 1792740537,
+        "received_at": 1792740537,
+        "ammonia_ppm": 0.28,
+        "ph": 7.2,
+        "temperature_c": 28.0,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 16.2,
+        "avg_depth_cm": 80.0,
+        "erratic_index": 7.5,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 95
+      },
+      {
+        "timestamp": 1792740597,
+        "received_at": 1792740597,
+        "ammonia_ppm": 0.28,
+        "ph": 7.2,
+        "temperature_c": 28.0,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 16.2,
+        "avg_depth_cm": 80.0,
+        "erratic_index": 7.5,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 95
+      },
+      {
+        "timestamp": 1792740657,
+        "received_at": 1792740657,
+        "ammonia_ppm": 0.28,
+        "ph": 7.2,
+        "temperature_c": 28.0,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 16.2,
+        "avg_depth_cm": 80.0,
+        "erratic_index": 7.5,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 95
+      },
+      {
+        "timestamp": 1792740717,
+        "received_at": 1792740717,
+        "ammonia_ppm": 0.28,
+        "ph": 7.2,
+        "temperature_c": 28.0,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 16.2,
+        "avg_depth_cm": 80.0,
+        "erratic_index": 7.5,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 96
+      },
+      {
+        "timestamp": 1792740777,
+        "received_at": 1792740777,
+        "ammonia_ppm": 0.28,
+        "ph": 7.2,
+        "temperature_c": 28.0,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 16.2,
+        "avg_depth_cm": 80.0,
+        "erratic_index": 7.5,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 96
+      },
+      {
+        "timestamp": 1792740839,
+        "received_at": 1792740839,
+        "ammonia_ppm": 0.13,
+        "ph": 5.0,
+        "temperature_c": 28.0,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 24.5,
+        "avg_depth_cm": 42.0,
+        "erratic_index": 38.0,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 95,
+        "verified_by_report_id": "rep_sonipat_verified"
+      }
+    ],
+    "STATION_04_PALLA": [
+      {
+        "timestamp": 1792740237,
+        "received_at": 1792740237,
+        "ammonia_ppm": 0.22,
+        "ph": 7.3,
+        "temperature_c": 27.8,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 15.8,
+        "avg_depth_cm": 82.0,
+        "erratic_index": 6.0,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 93
+      },
+      {
+        "timestamp": 1792740297,
+        "received_at": 1792740297,
+        "ammonia_ppm": 0.22,
+        "ph": 7.3,
+        "temperature_c": 27.8,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 15.8,
+        "avg_depth_cm": 82.0,
+        "erratic_index": 6.0,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 93
+      },
+      {
+        "timestamp": 1792740357,
+        "received_at": 1792740357,
+        "ammonia_ppm": 0.22,
+        "ph": 7.3,
+        "temperature_c": 27.8,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 15.8,
+        "avg_depth_cm": 82.0,
+        "erratic_index": 6.0,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 94
+      },
+      {
+        "timestamp": 1792740417,
+        "received_at": 1792740417,
+        "ammonia_ppm": 0.22,
+        "ph": 7.3,
+        "temperature_c": 27.8,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 15.8,
+        "avg_depth_cm": 82.0,
+        "erratic_index": 6.0,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 94
+      },
+      {
+        "timestamp": 1792740477,
+        "received_at": 1792740477,
+        "ammonia_ppm": 0.22,
+        "ph": 7.3,
+        "temperature_c": 27.8,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 15.8,
+        "avg_depth_cm": 82.0,
+        "erratic_index": 6.0,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 94
+      },
+      {
+        "timestamp": 1792740537,
+        "received_at": 1792740537,
+        "ammonia_ppm": 0.22,
+        "ph": 7.3,
+        "temperature_c": 27.8,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 15.8,
+        "avg_depth_cm": 82.0,
+        "erratic_index": 6.0,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 95
+      },
+      {
+        "timestamp": 1792740597,
+        "received_at": 1792740597,
+        "ammonia_ppm": 0.22,
+        "ph": 7.3,
+        "temperature_c": 27.8,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 15.8,
+        "avg_depth_cm": 82.0,
+        "erratic_index": 6.0,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 95
+      },
+      {
+        "timestamp": 1792740657,
+        "received_at": 1792740657,
+        "ammonia_ppm": 0.22,
+        "ph": 7.3,
+        "temperature_c": 27.8,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 15.8,
+        "avg_depth_cm": 82.0,
+        "erratic_index": 6.0,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 95
+      },
+      {
+        "timestamp": 1792740717,
+        "received_at": 1792740717,
+        "ammonia_ppm": 0.22,
+        "ph": 7.3,
+        "temperature_c": 27.8,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 15.8,
+        "avg_depth_cm": 82.0,
+        "erratic_index": 6.0,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 96
+      },
+      {
+        "timestamp": 1792740777,
+        "received_at": 1792740777,
+        "ammonia_ppm": 0.22,
+        "ph": 7.3,
+        "temperature_c": 27.8,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 15.8,
+        "avg_depth_cm": 82.0,
+        "erratic_index": 6.0,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 96
+      }
+    ],
+    "STATION_05_WAZIRABAD": [
+      {
+        "timestamp": 1792740237,
+        "received_at": 1792740237,
+        "ammonia_ppm": 0.18,
+        "ph": 7.5,
+        "temperature_c": 27.5,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 16.0,
+        "avg_depth_cm": 85.0,
+        "erratic_index": 5.5,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 93
+      },
+      {
+        "timestamp": 1792740297,
+        "received_at": 1792740297,
+        "ammonia_ppm": 0.18,
+        "ph": 7.5,
+        "temperature_c": 27.5,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 16.0,
+        "avg_depth_cm": 85.0,
+        "erratic_index": 5.5,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 93
+      },
+      {
+        "timestamp": 1792740357,
+        "received_at": 1792740357,
+        "ammonia_ppm": 0.18,
+        "ph": 7.5,
+        "temperature_c": 27.5,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 16.0,
+        "avg_depth_cm": 85.0,
+        "erratic_index": 5.5,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 94
+      },
+      {
+        "timestamp": 1792740417,
+        "received_at": 1792740417,
+        "ammonia_ppm": 0.18,
+        "ph": 7.5,
+        "temperature_c": 27.5,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 16.0,
+        "avg_depth_cm": 85.0,
+        "erratic_index": 5.5,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 94
+      },
+      {
+        "timestamp": 1792740477,
+        "received_at": 1792740477,
+        "ammonia_ppm": 0.18,
+        "ph": 7.5,
+        "temperature_c": 27.5,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 16.0,
+        "avg_depth_cm": 85.0,
+        "erratic_index": 5.5,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 94
+      },
+      {
+        "timestamp": 1792740537,
+        "received_at": 1792740537,
+        "ammonia_ppm": 0.18,
+        "ph": 7.5,
+        "temperature_c": 27.5,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 16.0,
+        "avg_depth_cm": 85.0,
+        "erratic_index": 5.5,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 95
+      },
+      {
+        "timestamp": 1792740597,
+        "received_at": 1792740597,
+        "ammonia_ppm": 0.18,
+        "ph": 7.5,
+        "temperature_c": 27.5,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 16.0,
+        "avg_depth_cm": 85.0,
+        "erratic_index": 5.5,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 95
+      },
+      {
+        "timestamp": 1792740657,
+        "received_at": 1792740657,
+        "ammonia_ppm": 0.18,
+        "ph": 7.5,
+        "temperature_c": 27.5,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 16.0,
+        "avg_depth_cm": 85.0,
+        "erratic_index": 5.5,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 95
+      },
+      {
+        "timestamp": 1792740717,
+        "received_at": 1792740717,
+        "ammonia_ppm": 0.18,
+        "ph": 7.5,
+        "temperature_c": 27.5,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 16.0,
+        "avg_depth_cm": 85.0,
+        "erratic_index": 5.5,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 96
+      },
+      {
+        "timestamp": 1792740777,
+        "received_at": 1792740777,
+        "ammonia_ppm": 0.18,
+        "ph": 7.5,
+        "temperature_c": 27.5,
+        "dissolved_oxygen_mgl": 6.8,
+        "tds_mgl": 380.0,
+        "avg_velocity_mms": 16.0,
+        "avg_depth_cm": 85.0,
+        "erratic_index": 5.5,
+        "threat_level": "NORMAL",
+        "cellular": "4G-LTE",
+        "battery_percent": 96
+      }
+    ]
+  },
+  "stations": {
+    "STATION_01_PANIPAT": {
+      "status": "NORMAL",
+      "last_telemetry": {
+        "station_id": "STATION_01_PANIPAT",
+        "timestamp": 1792740777,
+        "chemical": {
+          "ammonia_ppm": 0.47,
+          "ph": 7.4,
+          "temperature_c": 28.5,
+          "dissolved_oxygen_mgl": 6.8,
+          "tds_mgl": 380.0
+        },
+        "biological": {
+          "avg_velocity_mms": 15.5,
+          "avg_depth_cm": 78.0,
+          "erratic_index": 9.0
+        }
+      },
+      "last_result": {
+        "station_id": "STATION_01_PANIPAT",
+        "anomaly_detected": false,
+        "threat_level": "NORMAL",
+        "anomaly_type": "NORMAL_BASELINE",
+        "arrival_forecast": {
+          "river_velocity_kmh": 1.0,
+          "velocity_uncertainty_kmh": 0.3,
+          "distance_km": 68.0,
+          "estimated_hours_to_wazirabad": 68.0,
+          "eta_range_hours": [
+            52.3,
+            68.0
+          ],
+          "predicted_intake_ammonia_ppm": 0.4
+        }
+      },
+      "toxicity": {
+        "total_ammonia_ppm": 0.47,
+        "ph": 7.4,
+        "temperature_c": 28.5,
+        "unionized_fraction": 0.0179,
+        "unionized_ammonia_mgl": 0.0084,
+        "band": "SAFE",
+        "heat_multiplier_vs_25c": 1.27
+      },
+      "updated_at": 1792740837
+    },
+    "STATION_02_PANIPAT": {
+      "status": "WARNING_LEVEL_2",
+      "last_telemetry": {
+        "station_id": "STATION_02_PANIPAT",
+        "timestamp": 1792741102,
+        "chemical": {
+          "ammonia_ppm": 1.0,
+          "ph": 2.0,
+          "temperature_c": 28.0,
+          "dissolved_oxygen_mgl": 6.8,
+          "tds_mgl": 380.0
+        },
+        "biological": {
+          "avg_velocity_mms": 24.5,
+          "avg_depth_cm": 42.0,
+          "erratic_index": 38.0
+        }
+      },
+      "last_result": {
+        "station_id": "STATION_02_PANIPAT",
+        "anomaly_detected": true,
+        "threat_level": "WARNING_LEVEL_2",
+        "anomaly_type": "AMMONIA_SURGE",
+        "arrival_forecast": {
+          "river_velocity_kmh": 1.0,
+          "velocity_uncertainty_kmh": 0.3,
+          "distance_km": 63.0,
+          "estimated_hours_to_wazirabad": 63.0,
+          "eta_range_hours": [
+            48.5,
+            63.0
+          ],
+          "predicted_intake_ammonia_ppm": 0.85
+        },
+        "toxicity": {
+          "total_ammonia_ppm": 1.0,
+          "ph": 2.0,
+          "temperature_c": 28.0,
+          "unionized_fraction": 0.0,
+          "unionized_ammonia_mgl": 0.0,
+          "band": "SAFE",
+          "heat_multiplier_vs_25c": 1.23
+        }
+      },
+      "toxicity": {
+        "total_ammonia_ppm": 1.0,
+        "ph": 2.0,
+        "temperature_c": 28.0,
+        "unionized_fraction": 0.0,
+        "unionized_ammonia_mgl": 0.0,
+        "band": "SAFE",
+        "heat_multiplier_vs_25c": 1.23
+      },
+      "updated_at": 1792741105,
+      "verified_report": "rep_7f0f4000"
+    },
+    "STATION_03_SONIPAT": {
+      "status": "NORMAL",
+      "last_telemetry": {
+        "station_id": "STATION_03_SONIPAT",
+        "timestamp": 1792740839,
+        "chemical": {
+          "ammonia_ppm": 0.13,
+          "ph": 5.0,
+          "temperature_c": 28.0,
+          "dissolved_oxygen_mgl": 6.8,
+          "tds_mgl": 380.0
+        },
+        "biological": {
+          "avg_velocity_mms": 24.5,
+          "avg_depth_cm": 42.0,
+          "erratic_index": 38.0
+        }
+      },
+      "last_result": {
+        "station_id": "STATION_03_SONIPAT",
+        "anomaly_detected": false,
+        "threat_level": "NORMAL",
+        "anomaly_type": "BIO_KINEMATIC_COLLAPSE",
+        "arrival_forecast": {
+          "river_velocity_kmh": 1.0,
+          "velocity_uncertainty_kmh": 0.3,
+          "distance_km": 38.5,
+          "estimated_hours_to_wazirabad": 38.5,
+          "eta_range_hours": [
+            29.6,
+            38.5
+          ],
+          "predicted_intake_ammonia_ppm": 0.35
+        },
+        "toxicity": {
+          "total_ammonia_ppm": 0.13,
+          "ph": 5.0,
+          "temperature_c": 28.0,
+          "unionized_fraction": 0.0001,
+          "unionized_ammonia_mgl": 0.0,
+          "band": "SAFE",
+          "heat_multiplier_vs_25c": 1.23
+        }
+      },
+      "toxicity": {
+        "total_ammonia_ppm": 0.13,
+        "ph": 5.0,
+        "temperature_c": 28.0,
+        "unionized_fraction": 0.0001,
+        "unionized_ammonia_mgl": 0.0,
+        "band": "SAFE",
+        "heat_multiplier_vs_25c": 1.23
+      },
+      "updated_at": 1792740839,
+      "verified_report": "rep_sonipat_verified"
+    },
+    "STATION_04_PALLA": {
+      "status": "NORMAL",
+      "last_telemetry": {
+        "station_id": "STATION_04_PALLA",
+        "timestamp": 1792740777,
+        "chemical": {
+          "ammonia_ppm": 0.22,
+          "ph": 7.3,
+          "temperature_c": 27.8,
+          "dissolved_oxygen_mgl": 6.8,
+          "tds_mgl": 380.0
+        },
+        "biological": {
+          "avg_velocity_mms": 15.8,
+          "avg_depth_cm": 82.0,
+          "erratic_index": 6.0
+        }
+      },
+      "last_result": {
+        "station_id": "STATION_04_PALLA",
+        "anomaly_detected": false,
+        "threat_level": "NORMAL",
+        "anomaly_type": "NORMAL_BASELINE",
+        "arrival_forecast": {
+          "river_velocity_kmh": 1.0,
+          "velocity_uncertainty_kmh": 0.3,
+          "distance_km": 16.5,
+          "estimated_hours_to_wazirabad": 16.5,
+          "eta_range_hours": [
+            12.7,
+            16.5
+          ],
+          "predicted_intake_ammonia_ppm": 0.35
+        }
+      },
+      "toxicity": {
+        "total_ammonia_ppm": 0.22,
+        "ph": 7.3,
+        "temperature_c": 27.8,
+        "unionized_fraction": 0.0136,
+        "unionized_ammonia_mgl": 0.003,
+        "band": "SAFE",
+        "heat_multiplier_vs_25c": 1.21
+      },
+      "updated_at": 1792740837
+    },
+    "STATION_05_WAZIRABAD": {
+      "status": "NORMAL",
+      "last_telemetry": {
+        "station_id": "STATION_05_WAZIRABAD",
+        "timestamp": 1792740777,
+        "chemical": {
+          "ammonia_ppm": 0.18,
+          "ph": 7.5,
+          "temperature_c": 27.5,
+          "dissolved_oxygen_mgl": 6.8,
+          "tds_mgl": 380.0
+        },
+        "biological": {
+          "avg_velocity_mms": 16.0,
+          "avg_depth_cm": 85.0,
+          "erratic_index": 5.5
+        }
+      },
+      "last_result": {
+        "station_id": "STATION_05_WAZIRABAD",
+        "anomaly_detected": false,
+        "threat_level": "NORMAL",
+        "anomaly_type": "NORMAL_BASELINE",
+        "arrival_forecast": {
+          "river_velocity_kmh": 1.0,
+          "velocity_uncertainty_kmh": 0.3,
+          "distance_km": 0.0,
+          "estimated_hours_to_wazirabad": 0.0,
+          "eta_range_hours": [
+            0.0,
+            0.0
+          ],
+          "predicted_intake_ammonia_ppm": 0.35
+        }
+      },
+      "toxicity": {
+        "total_ammonia_ppm": 0.18,
+        "ph": 7.5,
+        "temperature_c": 27.5,
+        "unionized_fraction": 0.0209,
+        "unionized_ammonia_mgl": 0.0038,
+        "band": "SAFE",
+        "heat_multiplier_vs_25c": 1.19
+      },
+      "updated_at": 1792740837
+    }
+  },
+  "reports": {
+    "rep_sonipat_verified": {
+      "id": "rep_sonipat_verified",
+      "created_at": 1792740537,
+      "status": "approved",
+      "station_id": "STATION_03_SONIPAT",
+      "reporter_type": "verified",
+      "reporter_name": "Akshat Jain",
+      "lat": 28.99,
+      "lng": 77.02,
+      "location_label": "Sonipat Industrial Cluster",
+      "source_type": "drain_outfall",
+      "ammonia_ppm": 0.13,
+      "ph": 5.0,
+      "temperature_c": 28.0,
+      "observations": [
+        "dark_color",
+        "foam"
+      ],
+      "note": "Verified field sample approved for monitoring node",
+      "severity": "green"
+    },
+    "rep_7f0f4000": {
+      "id": "rep_7f0f4000",
+      "created_at": 1792741094.8555882,
+      "status": "approved",
+      "station_id": "STATION_02_PANIPAT",
+      "reporter_type": "verified",
+      "reporter_name": "Akshat Jain",
+      "lat": 29.39,
+      "lng": 76.97,
+      "location_label": "Panipat Industrial Outfall",
+      "source_type": "river",
+      "ammonia_ppm": 1.0,
+      "ph": 2.0,
+      "temperature_c": null,
+      "observations": [
+        "sharp_smell",
+        "dead_fish",
+        "oil_sheen"
+      ],
+      "note": "",
+      "photo_key": null,
+      "severity": "red"
+    }
+  },
+  "incidents": {
+    "inc_2a24de6d": {
+      "id": "inc_2a24de6d",
+      "station_id": "STATION_02_PANIPAT",
+      "status": "OPEN",
+      "level": "WARNING_LEVEL_2",
+      "anomaly_type": "AMMONIA_SURGE",
+      "sources": [
+        "sensor"
+      ],
+      "report_ids": [],
+      "opened_at": 1792741105,
+      "last_seen": 1792741105,
+      "forecast": {
+        "river_velocity_kmh": 1.0,
+        "velocity_uncertainty_kmh": 0.3,
+        "distance_km": 63.0,
+        "estimated_hours_to_wazirabad": 63.0,
+        "eta_range_hours": [
+          48.5,
+          63.0
+        ],
+        "predicted_intake_ammonia_ppm": 0.85
+      },
+      "normal_streak": 0
+    }
+  },
+  "gate": {
+    "intake_status": "OPEN",
+    "last_actuation_timestamp": null
+  }
+}

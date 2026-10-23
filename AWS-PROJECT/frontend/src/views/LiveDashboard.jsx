@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { usePoll } from '../api'
+import { api, usePoll } from '../api'
 import { conditionMeta, fmtDur, levelMeta } from '../format'
 import { Panel, ReadState } from '../ui'
 import { Corridor } from './Overview'
@@ -18,6 +18,13 @@ export default function LiveDashboard({ onBack, onOpenAuth, user, onSignOut }) {
   const [view, setView] = useState('status') // 'status' | 'map' | 'toxicity' | 'report' | 'subscribe'
   const [ward, setWard] = useState(WARDS[0])
   const [selectedStationId, setSelectedStationId] = useState('')
+  const [userReports, setUserReports] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem('biosentinel_user_reports') || '[]')
+    } catch {
+      return []
+    }
+  })
 
   const status = feed.error ? null : feed.data
   const stations = status?.stations || []
@@ -25,8 +32,92 @@ export default function LiveDashboard({ onBack, onOpenAuth, user, onSignOut }) {
   const cond = conditionMeta(hasReadings || status?.incident ? status?.overall : null)
   const schedule = status?.rationing?.find((r) => r.ward === ward)
 
+  const serverReports = reports.data || []
+  const combinedReports = [
+    ...userReports.filter((ur) => !serverReports.some((sr) => sr.id === ur.id)),
+    ...serverReports,
+  ]
+
+  const [reviewingId, setReviewingId] = useState('')
+  const [reviewFeedback, setReviewFeedback] = useState(null)
+
   const handleStationSelect = (sid) => {
     setSelectedStationId(sid)
+  }
+
+  const handleReviewReport = async (reportId, action) => {
+    if (reviewingId) return
+    setReviewingId(reportId)
+    setReviewFeedback(null)
+    try {
+      const rep = combinedReports.find((r) => r.id === reportId)
+      const res = await api(`/reports/${reportId}`, {
+        method: 'PATCH',
+        body: {
+          action,
+          note: '',
+          fallback_report: rep ? {
+            id: rep.id,
+            station_id: rep.station_id,
+            ammonia_ppm: rep.ammonia_ppm,
+            ph: rep.ph,
+            temperature_c: rep.temperature_c,
+            observations: rep.observations,
+            lat: rep.lat,
+            lng: rep.lng,
+            location_label: rep.location_label,
+            source_type: rep.source_type,
+            reporter_type: rep.reporter_type,
+            note: rep.note,
+          } : null,
+        },
+      })
+
+      // Update local storage user reports if present
+      const updatedUserReports = userReports.map((r) =>
+        r.id === reportId ? { ...r, status: res.status } : r
+      )
+      setUserReports(updatedUserReports)
+      try {
+        localStorage.setItem('biosentinel_user_reports', JSON.stringify(updatedUserReports))
+      } catch {
+        // storage fallback
+      }
+
+      // Refresh backend feeds
+      reports.refresh()
+      feed.refresh()
+
+      if (action === 'approve') {
+        const targetSid = res.station_id || combinedReports.find((r) => r.id === reportId)?.station_id
+        if (targetSid) {
+          setSelectedStationId(targetSid)
+          setReviewFeedback({
+            type: 'success',
+            msg: `✓ Report approved! Telemetry for ${targetSid.replace('STATION_', '')} has been updated with verified readings. Inspect the live Yamuna Watch display below.`,
+          })
+          const el = document.querySelector('.watch-panel')
+          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        } else {
+          setReviewFeedback({
+            type: 'success',
+            msg: '✓ Report approved and verified in corridor.',
+          })
+        }
+      } else {
+        setReviewFeedback({
+          type: 'info',
+          msg: '✕ Report declined.',
+        })
+      }
+    } catch (err) {
+      setReviewFeedback({
+        type: 'error',
+        msg: `Failed to review report: ${err.message}`,
+      })
+    } finally {
+      setReviewingId('')
+    }
   }
 
   const member = Boolean(user?.role && user.role !== 'public')
@@ -102,6 +193,11 @@ export default function LiveDashboard({ onBack, onOpenAuth, user, onSignOut }) {
           <div className="dash-badges-row">
             <span className="badge-hackathon">AWS ENVIRONMENTAL HACKATHON 2026</span>
             <span className="badge-track">HEAT & WATER TRACK</span>
+            {status?.total_community_reports > 0 && (
+              <span className="badge-community-reports" title="Recent citizen observations received">
+                📝 {status.total_community_reports} FIELD {status.total_community_reports === 1 ? 'REPORT' : 'REPORTS'} IN CORRIDOR
+              </span>
+            )}
           </div>
           <div className="public-heading">
             <div>
@@ -164,7 +260,14 @@ export default function LiveDashboard({ onBack, onOpenAuth, user, onSignOut }) {
         {/* View: Report a Sample */}
         {view === 'report' && (
           <div className="dash-subview">
-            <ReportForm />
+            <ReportForm
+              onSubmitted={(res) => {
+                setUserReports((prev) => [res, ...prev.filter((r) => r.id !== res.id)])
+                reports.refresh()
+                feed.refresh()
+              }}
+              onViewDashboard={() => setView('status')}
+            />
           </div>
         )}
 
@@ -262,7 +365,8 @@ export default function LiveDashboard({ onBack, onOpenAuth, user, onSignOut }) {
                     { id: 'STATION_04_PALLA', label: 'Palla (Delhi Border)' },
                     { id: 'STATION_05_WAZIRABAD', label: 'Wazirabad Intake' },
                   ].map((step, idx) => {
-                    const distance = status.stations?.find(s => s.station_id === step.id)?.distance_km
+                    const stepStation = status.stations?.find(s => s.station_id === step.id)
+                    const distance = stepStation?.distance_km
                     const isOrigin = status.incident.station_id === step.id
                     const isPassed = idx <= ['STATION_01_PANIPAT', 'STATION_02_PANIPAT', 'STATION_03_SONIPAT', 'STATION_04_PALLA', 'STATION_05_WAZIRABAD'].indexOf(status.incident.station_id)
                     const isTarget = step.id === 'STATION_05_WAZIRABAD'
@@ -278,6 +382,11 @@ export default function LiveDashboard({ onBack, onOpenAuth, user, onSignOut }) {
                         <div className="step-info">
                           <strong className="step-name">{step.label}</strong>
                           <span className="step-dist mono">{Number.isFinite(distance) ? `${distance} km` : 'Distance unavailable'}</span>
+                          {stepStation?.community_reports_count > 0 && (
+                            <span className="step-flag" style={{ background: 'rgba(56, 189, 248, 0.2)', color: '#38bdf8', border: '1px solid rgba(56, 189, 248, 0.4)' }}>
+                              📝 {stepStation.community_reports_count} {stepStation.community_reports_count === 1 ? 'report' : 'reports'}
+                            </span>
+                          )}
                           {isOrigin && <span className="step-flag origin-flag">Plume Origin</span>}
                           {isTarget && (
                             <span className="step-flag eta-flag">
@@ -327,6 +436,11 @@ export default function LiveDashboard({ onBack, onOpenAuth, user, onSignOut }) {
                           <strong>{s.name}</strong>
                           {s.station_id === 'STATION_05_WAZIRABAD' && (
                             <span className="station-role-tag">Delhi Intake</span>
+                          )}
+                          {s.community_reports_count > 0 && (
+                            <span className="station-reports-tag" title={`${s.community_reports_count} community report(s) in last 24h`}>
+                              📝 {s.community_reports_count}
+                            </span>
                           )}
                         </div>
                         <div className="station-row-right">
@@ -407,10 +521,10 @@ export default function LiveDashboard({ onBack, onOpenAuth, user, onSignOut }) {
             {/* Station Watch (Living Daphnia & Chemical Telemetry) */}
             <StationWatch stations={stations} selectedStationId={selectedStationId} />
 
-            {/* Verified Field Reports Panel */}
+            {/* Field Reports Panel */}
             <Panel
-              title="Verified field reports"
-              meta="Community water observations"
+              title="Field reports & observations"
+              meta={`${combinedReports.length} reported · Real-time Sync`}
               actions={
                 <button
                   type="button"
@@ -421,10 +535,55 @@ export default function LiveDashboard({ onBack, onOpenAuth, user, onSignOut }) {
                 </button>
               }
             >
+              {reviewFeedback && (
+                <div
+                  className="review-feedback-banner"
+                  style={{
+                    padding: '9px 14px',
+                    borderRadius: '6px',
+                    marginBottom: '12px',
+                    fontSize: '0.86rem',
+                    fontWeight: 600,
+                    background:
+                      reviewFeedback.type === 'error'
+                        ? 'rgba(239, 68, 68, 0.2)'
+                        : reviewFeedback.type === 'info'
+                          ? 'rgba(148, 163, 184, 0.2)'
+                          : 'rgba(34, 197, 94, 0.2)',
+                    color:
+                      reviewFeedback.type === 'error'
+                        ? '#f87171'
+                        : reviewFeedback.type === 'info'
+                          ? '#cbd5e1'
+                          : '#4ade80',
+                    border: `1px solid ${
+                      reviewFeedback.type === 'error'
+                        ? 'rgba(239, 68, 68, 0.4)'
+                        : reviewFeedback.type === 'info'
+                          ? 'rgba(148, 163, 184, 0.4)'
+                          : 'rgba(34, 197, 94, 0.4)'
+                    }`,
+                  }}
+                >
+                  {reviewFeedback.msg}
+                </div>
+              )}
               <ReadState {...reports} retry={reports.refresh} />
-              {!reports.error && <ReportList rows={reports.data || []} />}
-              {!reports.loading && !reports.error && !reports.data?.length && (
-                <p className="muted">No approved reports yet.</p>
+              {combinedReports.length > 0 ? (
+                <ReportList
+                  rows={combinedReports}
+                  onReview={handleReviewReport}
+                  reviewingId={reviewingId}
+                  onInspectStation={(sid) => {
+                    setSelectedStationId(sid)
+                    const el = document.querySelector('.watch-panel')
+                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+                  }}
+                />
+              ) : (
+                !reports.loading && !reports.error && (
+                  <p className="muted">No reports submitted yet.</p>
+                )
               )}
             </Panel>
           </>

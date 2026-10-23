@@ -649,6 +649,20 @@ input, textarea { caret-color: var(--river); }
   padding: 0.38rem 0.85rem;
   border-radius: 6px;
 }
+.badge-community-reports {
+  background: rgba(14, 165, 233, 0.18);
+  border: 1px solid rgba(56, 189, 248, 0.45);
+  color: #38bdf8;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.38rem 0.85rem;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
 .site .hero-main-title,
 .hero-main-title {
   font-size: clamp(2.5rem, 4.3vw, 4rem);
@@ -2257,6 +2271,61 @@ legend { padding: 0 .4rem; }
 .report-row p { max-width: 70ch; overflow-wrap: anywhere; }
 .report-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
 .report-tags span { padding: .15rem .5rem; background: var(--raise); border-radius: 4px; font-size: .8rem; }
+.report-review-actions {
+  display: flex;
+  gap: 0.65rem;
+  margin-top: 0.85rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.btn-approve-report {
+  background: #16a34a;
+  color: #ffffff;
+  border: 1px solid #22c55e;
+  padding: 0.38rem 0.95rem;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  box-shadow: 0 2px 6px rgba(22, 163, 74, 0.35);
+}
+.btn-approve-report:hover:not(:disabled) {
+  background: #15803d;
+  box-shadow: 0 0 12px rgba(34, 197, 94, 0.5);
+  transform: translateY(-1px);
+}
+.btn-approve-report:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.btn-decline-report {
+  background: rgba(239, 68, 68, 0.12);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  padding: 0.38rem 0.95rem;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.btn-decline-report:hover:not(:disabled) {
+  background: rgba(239, 68, 68, 0.25);
+  border-color: #ef4444;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+.btn-decline-report:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
 .moderation-item { padding-bottom: 1.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--line-strong); }
 .triage-facts { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1rem; }
 .triage-facts dt { color: var(--ink-dim); }
@@ -2726,6 +2795,19 @@ legend { padding: 0 .4rem; }
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
+.station-reports-tag {
+  font-size: 0.68rem;
+  font-weight: 750;
+  color: #38bdf8;
+  background: rgba(14, 165, 233, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  padding: 0.18rem 0.5rem;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
 .status-pill {
   font-size: 0.76rem;
   font-weight: 700;
@@ -3027,6 +3109,15 @@ legend { padding: 0 .4rem; }
 .marker-gate.gate-open { background: rgba(34, 197, 94, 0.25); color: #22c55e; }
 .marker-gate.gate-closed { background: rgba(239, 68, 68, 0.3); color: #ef4444; }
 .marker-gate.gate-diverted_to_bypass, .marker-gate.gate-bypassed { background: rgba(245, 158, 11, 0.25); color: #f59e0b; }
+.marker-reports-badge {
+  font-size: 0.64rem;
+  font-weight: 700;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  background: rgba(14, 165, 233, 0.25);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+}
 .marker-pulse {
   position: absolute;
   top: -5px;
